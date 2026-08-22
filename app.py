@@ -12,7 +12,191 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+# Dark-Mode Visual Defaults
+plt.rcParams.update({
+    "figure.facecolor": "#111827",
+    "axes.facecolor": "#111827",
+    "axes.edgecolor": "#1F2937",
+    "axes.linewidth": 1.0,
+    "axes.labelcolor": "#94A3B8",
+    "xtick.color": "#64748B",
+    "ytick.color": "#64748B",
+    "text.color": "#F8FAFC",
+    "font.family": "sans-serif",
+    "grid.color": "#1E293B",
+    "grid.linestyle": "--"
+})
 
+st.markdown("""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    /* Global Typography & Canvas */
+    html, body, [class*="css"], .stApp {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+        background-color: #090D14 !important;
+        color: #F8FAFC !important;
+    }
+
+    .block-container {
+        padding-top: 1.8rem !important;
+        padding-bottom: 3rem !important;
+        max-width: 1280px !important;
+    }
+
+    /* Standardized Professional Headings */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Inter', sans-serif !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.02em !important;
+        color: #FFFFFF !important;
+    }
+
+    h1 {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+        margin-bottom: 6px !important;
+    }
+
+    h2 {
+        font-size: 19px !important;
+        margin-bottom: 12px !important;
+    }
+
+    h3 {
+        font-size: 16px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.05em !important;
+        color: #94A3B8 !important;
+        margin-top: 16px !important;
+        margin-bottom: 12px !important;
+    }
+
+    h4 {
+        font-size: 14px !important;
+        color: #E2E8F0 !important;
+        margin-bottom: 8px !important;
+    }
+
+    /* Sidebar Navigation */
+    section[data-testid="stSidebar"] {
+        background-color: #0D131F !important;
+        border-right: 1px solid #1E293B !important;
+    }
+
+    /* Command Center Header */
+    .hero-box {
+        background: #111827;
+        border: 1px solid #1E293B;
+        border-left: 3px solid #0D9488;
+        border-radius: 8px;
+        padding: 20px 24px;
+        margin-bottom: 24px;
+    }
+    .hero-badge {
+        display: inline-block;
+        background: rgba(13, 148, 136, 0.12);
+        border: 1px solid rgba(13, 148, 136, 0.4);
+        color: #2DD4BF !important;
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-family: 'Space Grotesk', monospace;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 6px;
+    }
+
+    /* Minimalist KPI Cards */
+    .metric-card {
+        background: #111827 !important;
+        border: 1px solid #1F2937 !important;
+        border-radius: 8px;
+        padding: 16px 18px;
+        position: relative;
+    }
+    .metric-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #0D9488;
+    }
+    .metric-card.accent::before {
+        background: #F97316;
+    }
+    .card-title {
+        color: #64748B !important;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+    }
+    .card-metric {
+        font-family: 'Space Grotesk', sans-serif !important;
+        font-size: 26px;
+        font-weight: 700;
+        color: #FFFFFF !important;
+    }
+
+    /* Clean Sidebar Buttons */
+    section[data-testid="stSidebar"] div[data-testid="stButton"] button[kind="primary"] {
+        background: #0D9488 !important;
+        color: #FFFFFF !important;
+        border: none !important;
+        font-weight: 600 !important;
+        font-size: 13px !important;
+        padding: 10px 14px !important;
+        border-radius: 6px !important;
+        text-align: left !important;
+        justify-content: flex-start !important;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stButton"] button[kind="secondary"] {
+        background: transparent !important;
+        color: #94A3B8 !important;
+        border: 1px solid #1E293B !important;
+        font-weight: 500 !important;
+        font-size: 13px !important;
+        padding: 10px 14px !important;
+        border-radius: 6px !important;
+        text-align: left !important;
+        justify-content: flex-start !important;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stButton"] button[kind="secondary"]:hover {
+        border-color: #0D9488 !important;
+        color: #FFFFFF !important;
+        background-color: #111827 !important;
+    }
+
+    /* Inputs & Selectboxes */
+    div[data-baseweb="select"] > div {
+        background-color: #111827 !important;
+        border: 1px solid #1F2937 !important;
+        border-radius: 6px !important;
+    }
+    div[data-baseweb="select"] * {
+        color: #FFFFFF !important;
+        -webkit-text-fill-color: #FFFFFF !important;
+    }
+
+    /* Checkbox Styling */
+    div[data-testid="stCheckbox"] label span {
+        color: #E2E8F0 !important;
+        font-size: 13.5px !important;
+        font-weight: 500 !important;
+    }
+
+    /* Sliders */
+    div[data-testid="stSlider"] div[role="slider"] {
+        background-color: #0D9488 !important;
+        border: 2px solid #FFFFFF !important;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 
 # 2. data pipeline
@@ -338,3 +522,150 @@ elif st.session_state.active_tab == "Account Diagnostics":
         plt.close(fig)
 
 
+
+# page 3 : demographics
+
+elif st.session_state.active_tab == "Demographics":
+    st.markdown("### Subscriber Demographics")
+
+    total_churned = int(raw_df['Churn_Binary'].sum())
+    male_churn = len(raw_df[(raw_df['gender'] == 'Male') & (raw_df['Churn_Binary'] == 1)])
+    female_churn = len(raw_df[(raw_df['gender'] == 'Female') & (raw_df['Churn_Binary'] == 1)])
+    recent_cohort = int(total_churned * 0.20)
+
+    d1, d2, d3 = st.columns(3)
+    with d1:
+        st.markdown(
+            f'''<div class="metric-card">
+                <div class="card-title">Recent Churn Volume</div>
+                <div class="card-metric">{recent_cohort:,}</div>
+            </div>''', unsafe_allow_html=True)
+    with d2:
+        st.markdown(
+            f'''<div class="metric-card">
+                <div class="card-title">Male Churn Count</div>
+                <div class="card-metric">{male_churn:,}</div>
+            </div>''', unsafe_allow_html=True)
+    with d3:
+        st.markdown(
+            f'''<div class="metric-card">
+                <div class="card-title">Female Churn Count</div>
+                <div class="card-metric">{female_churn:,}</div>
+            </div>''', unsafe_allow_html=True)
+
+    st.markdown("<div style='margin-top: 14px;'></div>", unsafe_allow_html=True)
+
+    r1_col1, r1_col2 = st.columns(2)
+    with r1_col1:
+        st.markdown("#### Gender Distribution")
+        gender_counts = raw_df['gender'].value_counts()
+        fig, ax = plt.subplots(figsize=(4.8, 2.6))
+        ax.pie(
+            gender_counts,
+            labels=gender_counts.index,
+            autopct='%1.1f%%',
+            startangle=90,
+            colors=['#0D9488', '#F97316'],
+            wedgeprops=dict(width=0.45, edgecolor='#111827', linewidth=2),
+            textprops={'fontsize': 9, 'fontweight': 'bold', 'color': '#F8FAFC'}
+        )
+        plt.tight_layout()
+        st.pyplot(fig)
+        plt.close(fig)
+
+    with r1_col2:
+        st.markdown("#### Senior Citizen Proportion")
+        senior_counts = raw_df['SeniorCitizen'].map({0: 'Non-Senior', 1: 'Senior Citizen'}).value_counts()
+        fig, ax = plt.subplots(figsize=(4.8, 2.6))
+        ax.pie(
+            senior_counts,
+            labels=senior_counts.index,
+            autopct='%1.1f%%',
+            startangle=90,
+            colors=['#0D9488', '#1F2937'],
+            wedgeprops=dict(width=0.45, edgecolor='#111827', linewidth=2),
+            textprops={'fontsize': 9, 'fontweight': 'bold', 'color': '#F8FAFC'}
+        )
+        plt.tight_layout()
+        st.pyplot(fig)
+        plt.close(fig)
+
+    st.markdown("<div style='margin-top: 14px;'></div>", unsafe_allow_html=True)
+
+    r2_col1, r2_col2 = st.columns(2)
+    with r2_col1:
+        st.markdown("#### Partner Status by Gender")
+        partner_df = pd.crosstab(raw_df['Partner'], raw_df['gender'])
+        fig, ax = plt.subplots(figsize=(4.8, 2.6))
+        partner_df.plot(kind='bar', stacked=True, color=['#0D9488', '#F97316'], ax=ax, width=0.45, edgecolor='#111827')
+        ax.set_xlabel("Partner Status", fontsize=9, fontweight="bold")
+        ax.set_ylabel("Subscribers", fontsize=9, fontweight="bold")
+        ax.legend(["Female", "Male"], fontsize=8.5, frameon=False)
+        plt.xticks(rotation=0)
+        plt.tight_layout()
+        st.pyplot(fig)
+        plt.close(fig)
+
+    with r2_col2:
+        st.markdown("#### Dependents Status by Gender")
+        dep_df = pd.crosstab(raw_df['Dependents'], raw_df['gender'])
+        fig, ax = plt.subplots(figsize=(4.8, 2.6))
+        dep_df.plot(kind='bar', stacked=True, color=['#0D9488', '#F97316'], ax=ax, width=0.45, edgecolor='#111827')
+        ax.set_xlabel("Dependents Status", fontsize=9, fontweight="bold")
+        ax.set_ylabel("Subscribers", fontsize=9, fontweight="bold")
+        ax.legend(["Female", "Male"], fontsize=8.5, frameon=False)
+        plt.xticks(rotation=0)
+        plt.tight_layout()
+        st.pyplot(fig)
+        plt.close(fig)
+
+
+
+# 4. by batch
+elif st.session_state.active_tab == "Batch Evaluation":
+    st.markdown("### Batch Evaluation")
+
+    sample_template = raw_df[engine.X.columns].head(5)
+    st.download_button(
+        label="Download Sample CSV Template",
+        data=sample_template.to_csv(index=False).encode('utf-8'),
+        file_name="retention_batch_template.csv",
+        mime="text/csv"
+    )
+
+    uploaded_file = st.file_uploader("Upload customer batch (.csv)", type=["csv"])
+    if uploaded_file is not None:
+        batch_df = pd.read_csv(uploaded_file)
+        missing_cols = [c for c in engine.X.columns if c not in batch_df.columns]
+
+        if missing_cols:
+            st.error(f"Missing required columns: `{', '.join(missing_cols)}`")
+        else:
+            clean_batch = batch_df[engine.X.columns].copy()
+            for c in engine.cat_cols:
+                clean_batch[c] = clean_batch[c].astype(str)
+            for c in engine.num_cols:
+                clean_batch[c] = pd.to_numeric(clean_batch[c], errors='coerce').fillna(0)
+
+            batch_probs = engine.model.predict_proba(clean_batch)[:, 1]
+            batch_df["Churn_Probability"] = np.round(batch_probs, 3)
+            batch_df["Churn_Risk"] = np.where(batch_probs >= engine.optimal_threshold, "High Risk", "Stable")
+
+
+            def assign_action(row):
+                p = row["Churn_Probability"]
+                if p < engine.optimal_threshold:
+                    return "Standard Operational"
+                if p >= 0.70 and float(row.get("MonthlyCharges", 0)) >= 80:
+                    return "Tier 1: VIP 20% Discount"
+                elif str(row.get("Contract", "")) == "Month-to-month":
+                    return "Tier 2: Annual Plan Credit"
+                else:
+                    return "Tier 3: $10 Statement Credit"
+
+
+            batch_df["Prescribed_Action"] = batch_df.apply(assign_action, axis=1)
+            st.success(f"Processed {len(batch_df):,} accounts.")
+            st.dataframe(
+                batch_df[["Churn_Probability", "Churn_Risk", "Prescribed_Action"] + list(engine.X.columns[:3])].head(
+                    15), use_container_width=True)
