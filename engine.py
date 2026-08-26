@@ -32,7 +32,6 @@ class LoyaltyEngine:
         for col in self.X.columns:
             if not pd.api.types.is_numeric_dtype(self.X[col]):
                 converted = pd.to_numeric(self.X[col].astype(str).str.strip(), errors='coerce')
-                # If column is predominantly numeric with whitespace issues (e.g., TotalCharges)
                 if converted.notnull().sum() / len(converted) > 0.8:
                     self.X[col] = converted.fillna(converted.median())
                     self.num_cols.append(col)
