@@ -33,28 +33,20 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-    /* 1. Complete Header Overrides */
-    header, 
-    header[data-testid="stHeader"],
-    [data-testid="stHeader"],
-    .stApp > header {
-        background-color: #090D14 !important;
-        background: #090D14 !important;
-    }
+header[data-testid="stHeader"] svg,
+[data-testid="stToolbar"] svg {
+    fill: #F8FAFC !important;
+}
 
-    /* Top decoration line removal */
-    [data-testid="stDecoration"],
-    header[data-testid="stHeader"]::before {
-        display: none !important;
-        height: 0px !important;
-    }
+header[data-testid="stHeader"] span,
+header[data-testid="stHeader"] a {
+    color: #F8FAFC !important;
+}
 
-    /* Force all header icons / buttons to white */
-    header[data-testid="stHeader"] *,
-    [data-testid="stToolbar"] * {
-        color: #F8FAFC !important;
-        fill: #F8FAFC !important;
-    }
+[data-testid="stToolbar"] img,
+[data-testid="stToolbar"] button {
+    background: transparent !important;
+}
 
     /* 2. Global Typography & Canvas */
     html, body, .stApp {
