@@ -7,12 +7,14 @@ import shap
 from engine import LoyaltyEngine
 
 # 1. page setup
+# 1. page setup
 st.set_page_config(
     page_title="Churn Diagnostics & Decision Platform",
     layout="wide",
     initial_sidebar_state="expanded"
 )
-# Dark-Mode Visual Defaults
+
+# Dark-Mode Visual Defaults for Matplotlib
 plt.rcParams.update({
     "figure.facecolor": "#111827",
     "axes.facecolor": "#111827",
@@ -31,15 +33,38 @@ st.markdown("""
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-    /* Global Typography & Canvas */
-    html, body, [class*="css"], .stApp {
+    /* 1. Complete Header Overrides */
+    header, 
+    header[data-testid="stHeader"],
+    [data-testid="stHeader"],
+    .stApp > header {
+        background-color: #090D14 !important;
+        background: #090D14 !important;
+    }
+
+    /* Top decoration line removal */
+    [data-testid="stDecoration"],
+    header[data-testid="stHeader"]::before {
+        display: none !important;
+        height: 0px !important;
+    }
+
+    /* Force all header icons / buttons to white */
+    header[data-testid="stHeader"] *,
+    [data-testid="stToolbar"] * {
+        color: #F8FAFC !important;
+        fill: #F8FAFC !important;
+    }
+
+    /* 2. Global Typography & Canvas */
+    html, body, .stApp {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
         background-color: #090D14 !important;
         color: #F8FAFC !important;
     }
 
     .block-container {
-        padding-top: 1.8rem !important;
+        padding-top: 2rem !important;
         padding-bottom: 3rem !important;
         max-width: 1280px !important;
     }
@@ -197,8 +222,6 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
-
 # 2. data pipeline
 
 @st.cache_resource
